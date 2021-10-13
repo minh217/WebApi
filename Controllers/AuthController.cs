@@ -48,5 +48,29 @@ namespace WebApi.Controllers
                 message = "Success"
             });
         }
+
+        [HttpGet("user")]
+        public IActionResult User()
+        {
+            try{    
+                var jwt =  Request.Cookies["jwt"];
+                var token = _jwtService.Verify(jwt);
+                int userId = int.Parse(token.Issuer);
+                var user = _repository.GetUserById(userId);
+
+                return Ok(user);
+            }catch(Exception _){
+                return Unauthorized();
+            }
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("jwt");
+            return Ok(new {
+                message  = "Success"
+            });
+        }
     }
 }

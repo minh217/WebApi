@@ -5,5 +5,7 @@ namespace WebApi.Interfaces
     {
         User Create(User User);
         User GetUserByEmail(string email);
+
+        User GetUserById(int id);
     }
 }
