@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 namespace WebApi.Models
 {
     public class User
@@ -5,6 +6,7 @@ namespace WebApi.Models
         public int Id {get;set;}
         public string Name {get;set;}
         public string Email {get;set;}
+        [JsonIgnore]
         public string Password {get;set;}
     }
 }
